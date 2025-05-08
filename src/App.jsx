@@ -1,28 +1,25 @@
 
+import { useState } from 'react'
 import './App.css'
-import Card from './components/Card'
-import Navbar from './components/Navbar'
-import Products from './components/Products'
-
-import products from "./utilities/data"
 
 
 function App() {
 
-  const logo = {
-    img:"https://flowbite.com/docs/images/logo.svg",
-    text: "flowbite"
-  }
+const [num, setNum] = useState(0)
 
+
+function handleCount(){
+  setNum(num+1)
+}
+
+console.log(num)
 
   return (
     <>
 
-<Navbar  logo={logo} len={products.length}/>
-    <Products data={products}/>
+    <h1>this heading {num}</h1>
 
-
-<h1 >big</h1>
+    <button className='border px-10 bg-green-700' onClick={handleCount}>inc</button>
 
     </>
   )
