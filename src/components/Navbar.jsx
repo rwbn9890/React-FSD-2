@@ -32,9 +32,9 @@ const Navbar = ({len, logo}) => {
           <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
         </li>
         <li>
-          <a href="#" className="bg-amber-200 text-black block py-2 px-3 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-            Stock 
-            <span className="bg-red-900 text-white ms-3 rounded-2xl" >{len}</span> 
+          <a href="#" className="bg-yellow-400 text-black block py-1 px-4 rounded-sm ">
+            Cart 
+            <span className="bg-white text-black ms-3 rounded-2xl p-1" >{len}</span> 
             </a>
         </li>
       </ul>

@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './Card'
 
-const Products = ({data}) => {
+const Products = ({data, addCart}) => {
 
   return (
     <div>
@@ -10,7 +10,7 @@ const Products = ({data}) => {
             <div className=' grid grid-cols-4 gap-3'>
                       {
                           data.map((ele)=>(
-                                    <Card key={ele.id} {...ele} />
+                                    <Card key={ele.id} {...ele} addCart={addCart} />
                                
                             ))
                         }
