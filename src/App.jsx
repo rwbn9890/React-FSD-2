@@ -1,48 +1,71 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-import Card from './components/Card'
-import Navbar from './components/Navbar'
-import Products from './components/Products'
 
-import products from "./utilities/data"
-import Cart from './components/Cart'
 
 
 function App() {
 
-  const [cart, setCart] = useState([])
+  const [todo, setTodo] = useState([])
+  const [to, setTo] = useState("")
 
-  const logo = {
-    img:"https://flowbite.com/docs/images/logo.svg",
-    text: "flowbite"
+
+  function handleTodo(){
+ 
+    let obj = {
+      id: Math.round(Math.random()*1000) ,
+      task : to,
+      status:false
+    }
+
+    // todo.push(obj);
+
+    setTodo([...todo, obj])
+
+  
   }
 
 
-  function addCart(obj){
+  function handleUpdate(id){
+      // let newTodo = todo.find((ele) => ele.id == id)
 
-    let newObj = cart.find((ele) => ele.title == obj.title)
-    if(newObj){
-    let newCart= cart.map((ele) => ele.title == newObj.title ? {...ele, qtn:ele.qtn++} : ele)
-    setCart(newCart)
-    }
-    else{
-      setCart([...cart, {...obj, qtn:1}])
-    }
+      // newTodo.status = !newTodo.status;
+
+     let newTodo = todo.map((ele)=> ele.id == id ? {...ele, status: !ele.status} : ele)
+
+      setTodo(newTodo)
+
+
+      
   }
-  console.log(cart)
+
+
+
+// useEffect(()=>{
+
+
+// }, [])
+
 
 
   return (
     <>
 
-<Cart cart={cart}/>
-<Navbar  logo={logo} len={cart.length}/>
-    <Products data={products} addCart={addCart}/>
-
-
-<h1 >big</h1>
-
+       <div className='w-5xl m-auto border flex flex-col gap-4 p-4'>
+            <input className='border' type="text" onChange={(e) =>  setTo(e.target.value) } />
+            <button onClick={handleTodo}>Add</button>
+       </div>
+       <div className='border w-5xl my-5 gap-5 flex flex-col mx-auto'>
+        {
+          todo.map((ele) => (
+              <div key={ele.id} className='flex gap-5'>
+                  <h3 className='font-bold'>{ele.task}</h3>
+                  <button className='bg-green-600 p-2 rounded-md' onClick={() => handleUpdate(ele.id)}  >{ele.status ? "Completed" : "not Completed" }</button>
+            </div>
+          ))
+        }
+       
+       </div>
     </>
   )
 }
