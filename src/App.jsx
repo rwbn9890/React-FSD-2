@@ -1,71 +1,74 @@
 
 import { useEffect, useState } from 'react'
 import './App.css'
+import { useCount } from './reactHooks'
 
 
 
 function App() {
+  const [page, setPage] = useState(1)
+  const [data, setData] = useState([])
 
-  const [todo, setTodo] = useState([])
-  const [to, setTo] = useState("")
 
+  const fetchData = async () => {
+    const res = await fetch(`https://dummyjson.com/products?limit=8&skip=${page}`)
+    const prod = await res.json();
+    setData(prod.products)
 
-  function handleTodo(){
- 
-    let obj = {
-      id: Math.round(Math.random()*1000) ,
-      task : to,
-      status:false
-    }
+    console.log(prod)
 
-    // todo.push(obj);
-
-    setTodo([...todo, obj])
-
-  
   }
 
 
-  function handleUpdate(id){
-      // let newTodo = todo.find((ele) => ele.id == id)
-
-      // newTodo.status = !newTodo.status;
-
-     let newTodo = todo.map((ele)=> ele.id == id ? {...ele, status: !ele.status} : ele)
-
-      setTodo(newTodo)
-
-
-      
-  }
+  useEffect(() => {
+    fetchData()
+  }, [page])
 
 
 
-// useEffect(()=>{
 
 
-// }, [])
 
 
 
   return (
     <>
 
-       <div className='w-5xl m-auto border flex flex-col gap-4 p-4'>
-            <input className='border' type="text" onChange={(e) =>  setTo(e.target.value) } />
-            <button onClick={handleTodo}>Add</button>
-       </div>
-       <div className='border w-5xl my-5 gap-5 flex flex-col mx-auto'>
+      <div className='max-w-7xl m-auto p-2 grid grid-cols-4 gap-4'>
         {
-          todo.map((ele) => (
-              <div key={ele.id} className='flex gap-5'>
-                  <h3 className='font-bold'>{ele.task}</h3>
-                  <button className='bg-green-600 p-2 rounded-md' onClick={() => handleUpdate(ele.id)}  >{ele.status ? "Completed" : "not Completed" }</button>
+          data.map((ele) => (
+            <div key={ele.id} className="max-w-sm rounded overflow-hidden shadow-lg">
+              <img className="w-full" src={ele.thumbnail} alt="Sunset in the mountains" />
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">{ele.price}</div>
+                <p className="text-gray-700 text-base">
+                  {ele.title}
+                </p>
+              </div>
+              {/* <div className="px-6 pt-4 pb-2">
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+              </div> */}
             </div>
           ))
         }
-       
-       </div>
+
+
+      </div>
+   <div class="flex m-auto justify-center">
+
+  <button onClick={()=>setPage(page-1)} className="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+    Previous
+  </button>
+
+<h2>{page}</h2>
+
+  <button  onClick={()=>setPage(page+1)}  className="flex items-center justify-center px-3 h-8 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+    Next
+  </button>
+</div>
+
     </>
   )
 }
