@@ -1,9 +1,17 @@
 
 import React,{useState} from "react"
 
-export const Alert = ({type, message}) => {
 
-  const [showing, setShowing] =  useState(true)
+
+
+
+const Bootstraped = () => {
+
+  
+  
+  const Alert = ({type, message}) => {
+   const [showing, setShowing] =  useState(true)
+
     function close(){
         setShowing(!showing)
     }
@@ -19,14 +27,11 @@ export const Alert = ({type, message}) => {
         <button onClick={close} className="btn-close btn-sm text-danger"></button>
     </div>
   )
-
 }
 
 
 
-
-
-export const Button = ({type,icon, children}) => {
+ const Button = ({type,icon, children}) => {
   return (
     
     <button className={`btn btn-outline-${type} btn px-5 m-2`}>{icon} {children}</button>
@@ -34,6 +39,11 @@ export const Button = ({type,icon, children}) => {
   )
 }
 
+return {Alert, Button}
+
+}
+
+export const {Alert, Button} = Bootstraped()
 
 
 
