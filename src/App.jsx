@@ -12,11 +12,13 @@ import Home from './Pages/Home'
 import Contact from './Pages/Contact'
 import Product from './Pages/Product'
 import About from './Pages/About'
+import Login from './Pages/Login'
 
 
 function App() {
 
   const [cart, setCart] = useState([])
+  const [auth, setAuth] = useState({})
 
   const logo = {
     img:"https://flowbite.com/docs/images/logo.svg",
@@ -39,6 +41,12 @@ function App() {
 
   useEffect(()=>{
     getCart()
+  }, [])
+
+
+  useEffect(()=>{
+    let newAuth = JSON.parse(localStorage.getItem("auth"))
+    setAuth(newAuth)
   }, [])
 
   function addCart(obj){
@@ -70,12 +78,16 @@ function App() {
 <Cart cart={cart}/> */}
 
 <BrowserRouter>
-<Navbar  logo={logo} len={cart.length}/>
+{
+
+    auth &&  <Navbar  logo={logo} len={cart.length} setAuth={setAuth}/>
+}
 
 
 
   <Routes>
-    <Route path="/" element={<Home/>}/>
+    <Route path="/" element={<Login  setAuth={setAuth}/>}/>
+    <Route path="/Home" element={<Home/>}/>
     <Route path="/contact" element={<Contact/>}/>
     <Route path="/product" element={<Product  data={products} addCart={addCart}/>}/>
     <Route path="/about" element={<About/>}/>

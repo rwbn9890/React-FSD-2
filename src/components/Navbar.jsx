@@ -1,7 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 
-const Navbar = ({len, logo}) => {
+const Navbar = ({len, logo, setAuth}) => {
+
+  const navigate = useNavigate()
+function logout(){
+
+  localStorage.removeItem("auth")
+  setAuth({})
+  navigate("/")
+  
+}
+
   return (
     
 
@@ -49,6 +59,13 @@ const Navbar = ({len, logo}) => {
             <span className="bg-white text-black ms-3 rounded-2xl p-1" >{len}</span> 
             </a>
           </Link>
+        </li>
+        <li>
+         
+          <a onClick={logout} className="bg-red-400 text-black block py-1 px-4 rounded-sm ">
+       LogOUt
+            </a>
+         
         </li>
       </ul>
     </div>
