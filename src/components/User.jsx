@@ -18,9 +18,7 @@ console.log(userId)
     
         const fetUsers = async () => {
 
-
-            try {
-
+        try {
             const res = await fetch(`https://randomuser.me/api?id=${userId}`);
             const data = await res.json()
             console.log(data.results)
