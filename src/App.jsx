@@ -1,34 +1,23 @@
-
-import './App.css'
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
+import React, { useContext } from "react"
+import Button from "./Component/Button"
+import {CountContext} from "./context/CountContextProvider"
 
 function App() {
 
+  const { count } = useContext(CountContext)
+
+  console.log(count)
+
   return (
-    <frameElement>
-      <Navbar/>
-      <div className="max-w-7xl mx-auto border p-4">
-        <div className="flex gap-2 flex-wrap ">
-          <div className="shadow shadow-lime-400 rounded-md p-5 w-[25%]">
-            first Box
-          </div>
-          <div className="shadow shadow-lime-400 rounded-md p-5 w-[25%]">
-            first Box
-          </div>
-          <div className="shadow shadow-lime-400 rounded-md p-5 w-[25%]">
-            first Box
-          </div>
-          <div className="shadow shadow-lime-400 rounded-md p-5 w-[25%]">
-            first Box
-          </div>
-          <div className="shadow shadow-lime-400 rounded-md p-5 w-[25%]">
-            first Box
-          </div>
-        </div>
+    <>
+
+      <div className="max-w-xl shadow shadow-2xl shadow-amber-500 p-4 mx-auto">
+        <h1>Count:- <span className="text-2xl">{count} </span></h1>
+
+        <Button>Inc</Button>
+
       </div>
-      <Footer/>
-    </frameElement>
+    </>
   )
 }
 
