@@ -2,28 +2,37 @@ import React, { useContext } from "react"
 import Button from "./Component/Button"
 import {CountContext} from "./context/CountContextProvider"
 import Todo from "./Component/todo/Todo"
+import { TodoContext } from "./context/TodoContext"
 
 function App() {
 
+  const {setTheme} = useContext(TodoContext)
   const { count } = useContext(CountContext)
 
   console.log(count)
 
   return (
-    <>
+    <div className="dark:bg-slate-800  h-screen relative">
 
-      <div className="max-w-xl shadow shadow-sm shadow-amber-100 p-4 mx-auto">
+      <button onClick={() => setTheme("dark")} className="m-3 border py-2 px-4 bg-amber-400">dark</button>
+      <button  onClick={() => setTheme("light")}  className="m-3 border py-2 px-4 bg-amber-400">Light</button>
+
+      {/* <div className="max-w-xl shadow shadow-sm shadow-amber-100 p-4 mx-auto">
         <h1>Count:- <span className="text-2xl">{count} </span></h1>
 
         <Button>Inc</Button>
 
-      </div>
+      </div> */}
 
-      <div className="max-w-xl my-50 border border-slate-400 rounded-2xl shadow-amber-500 p-4 mx-auto">
+
+
+      <div className=" max-w-xl  border border-slate-400 rounded-2xl shadow-amber-500 p-4 mx-auto absolute top-[25%] end-1/2 translate-x-1/2">
       <Todo/>
 
       </div>
-    </>
+
+
+    </div>
   )
 }
 
