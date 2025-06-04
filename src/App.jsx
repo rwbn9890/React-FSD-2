@@ -12,10 +12,11 @@ function App() {
   console.log(count)
 
   return (
-    <div className="dark:bg-slate-800  h-screen relative">
+    <div className=" bg-amber-50 dark:bg-slate-800  focia:bg-fuchsia-900 h-screen relative">
 
-      <button onClick={() => setTheme("dark")} className="m-3 border py-2 px-4 bg-amber-400">dark</button>
-      <button  onClick={() => setTheme("light")}  className="m-3 border py-2 px-4 bg-amber-400">Light</button>
+      <button onClick={() => setTheme("dark")} className="m-1 border py-1 rounded-sm px-4 bg-amber-400 shadow">dark</button>
+      <button  onClick={() => setTheme("light")}  className="m-1 border py-1 rounded-sm px-4 bg-amber-400 shadow">Light</button>
+      <button  onClick={() => setTheme("focia")}  className="m-1 border py-1 rounded-sm px-4 bg-amber-400 shadow">Purple</button>
 
       {/* <div className="max-w-xl shadow shadow-sm shadow-amber-100 p-4 mx-auto">
         <h1>Count:- <span className="text-2xl">{count} </span></h1>
@@ -26,7 +27,7 @@ function App() {
 
 
 
-      <div className=" max-w-xl  border border-slate-400 rounded-2xl shadow-amber-500 p-4 mx-auto absolute top-[25%] end-1/2 translate-x-1/2">
+      <div className=" max-w-full bg-slate-800 dark:bg-slate-200  focia:bg-fuchsia-800 border border-slate-400 rounded-2xl shadow-amber-500 p-4 mx-auto absolute top-[25%] end-1/2 translate-x-1/2">
       <Todo/>
 
       </div>

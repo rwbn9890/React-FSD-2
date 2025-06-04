@@ -16,6 +16,14 @@ const {list, editTask} = useContext(TodoContext)
               <p className={ele.status ? 'text-green-600' : 'text-red-600'}>{
                   ele.status ?  <span>Complete</span> : <span>Not Complite</span>
                 }</p>
+                    {
+                      ele.note &&
+                        <p>
+                      {ele.note}
+                    </p>
+                    }
+              
+
               <div>
                 <button className=' rounded-full p-1 bg-gray-100 hover:bg-gray-200'>
                   <TrashIcon className="size-5 text-fuchsia-500"/>

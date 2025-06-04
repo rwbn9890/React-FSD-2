@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant focia (&:where(.focia, .focia *));
+
+body, *{
+    @apply transition-all duration-500
+}
