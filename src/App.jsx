@@ -1,26 +1,45 @@
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import './App.css'
 
 
 function App() {
 
-const [num, setNum] = useState(0)
+  const [count, setCount] = useState(0)
+  const [status, setStatus] = useState(false)
+
+  // const finalCount = () => {
+  //   
+  // }
+
+  const finalCount = useMemo(() => {
+        return cal();
+  } ,[count])
 
 
-function handleCount(){
-  setNum(num+1)
-}
+  function cal(){
+    for(let i=0; i<1000000000; i++)
+    {
 
-console.log(num)
+    }
+    return count;
+  }
+
 
   return (
     <>
-
-    <h1>this heading {num}</h1>
-
-    <button className='border px-10 bg-green-700' onClick={handleCount}>inc</button>
-
+      <div className='max-w-xl mx-auto my-10 grid grid-cols-2'>
+        <div>
+           <button onClick={()=> setCount(count+1)} class="rounded-md bg-gradient-to-tr from-slate-800 to-slate-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+            Count - {finalCount}
+          </button>
+        </div>
+        <div>
+           <button onClick={() => setStatus(!status)} class="rounded-md bg-gradient-to-tr from-slate-800 to-slate-700 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+            {status ? "TRUE" : "FALSE"}
+          </button>
+        </div>
+      </div>
     </>
   )
 }
