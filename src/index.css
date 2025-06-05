@@ -1,7 +1,2 @@
-.text-red-900{
-    color:rgba(255, 0, 0, 0.87)
-}
 
-.w-7xl{
-    width: 1400px;
-}
+@import "tailwindcss";
