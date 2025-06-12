@@ -4,11 +4,11 @@ import Input from "./Input";
 import Select from "./Select";
 
 const Converter = () => {
-  const { curData, nextCur, preCur, setPreCur, setNextCur, handleChange, nextAmt} = useCurrency();
+  const { curData, nextCur, preCur, setPreCur, setNextCur, handleChange, nextAmt, setPreAmt} = useCurrency();
 
   return (
     <>
-      <Input handleChange={handleChange} cr={preCur} />
+      <Input setPreAmt={setPreAmt} cr={preCur} />
       <Select curData={curData} setCur={setPreCur} cur={preCur} />
 
       <br />

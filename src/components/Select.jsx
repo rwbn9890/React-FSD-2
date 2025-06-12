@@ -2,7 +2,7 @@ import React from "react";
 import { useCurrency } from "../context/CurrencyContext";
 
 const Select = ({ curData, setCur, cur }) => {
-  console.log(curData);
+  // console.log(curData);
   let keys = Object.keys(curData);
 
   return (
