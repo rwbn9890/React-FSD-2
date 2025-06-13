@@ -12,32 +12,42 @@ export const CurrencyContextProvider = ({ children }) => {
 
   const api_url = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${preCur}.json`;
 
-  async function getCurrency() {
-    
-    let data = await axios.get(api_url);
-    // console.log(data.data);
-    await setCurData(data.data[preCur]);
+    async function getCurrency() {
+        
+        let data = await axios.get(api_url);
+        // console.log(data.data);
+        await setCurData(data.data[preCur]);
 
-     await handleConvert();
+        await handleConvert();
 
   }
 
+  
   useEffect(() => {
     getCurrency();
-  }, [preCur, preAmt]);
+  }, [preCur]);
+
+
+  useEffect(()=>{
+    handleConvert()
+  }, [preAmt, curData, nextCur])
 
 
 
-async function handleConvert(){
-  await setNextAmt(preAmt * curData[nextCur])
+function handleConvert(){
+      setNextAmt(preAmt * curData[nextCur])
   }
-  console.log(nextAmt)
 
+
+  function handleSwitch(){
+    setNextCur(preCur)
+    setPreCur(nextCur)
+  }
 
 
   return (
     <CurrencyContext.Provider
-      value={{ curData, nextCur, setNextCur, setPreCur, preCur, nextAmt, setPreAmt}}
+      value={{ curData, nextCur, setNextCur, setPreCur, preCur, nextAmt, setPreAmt, handleSwitch}}
     >
       {children}
     </CurrencyContext.Provider>

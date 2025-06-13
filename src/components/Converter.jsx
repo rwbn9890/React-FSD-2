@@ -4,16 +4,16 @@ import Input from "./Input";
 import Select from "./Select";
 
 const Converter = () => {
-  const { curData, nextCur, preCur, setPreCur, setNextCur, handleChange, nextAmt, setPreAmt} = useCurrency();
+  const { curData, nextCur, preCur, setPreCur, setNextCur, preAmt, handleChange, nextAmt, setPreAmt, handleSwitch } = useCurrency();
 
   return (
     <>
-      <Input setPreAmt={setPreAmt} cr={preCur} />
+      <Input setPreAmt={setPreAmt} amt={preAmt} cr={preCur} />
       <Select curData={curData} setCur={setPreCur} cur={preCur} />
 
       <br />
       <br />
-      <button>Switch</button>
+      <button onClick={handleSwitch}>Switch</button>
       <br />
       <br />
 
