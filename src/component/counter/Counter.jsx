@@ -1,14 +1,14 @@
 import React from 'react';
-import { incCount, decCount, resCount } from '../redux/Action';
+
 // import { store } from '../redux/Store';
 import { useDispatch, useSelector } from 'react-redux';
+import { decCount, incCount, resCount } from '../../redux/counter/Action';
 
 const Counter = () => {
-    let storeCount = useSelector((store) => store.count)
+    let storeCount = useSelector((store) => store.counter.count)
     const dispatch = useDispatch()
 
     // console.log(storeCount)
-    console.log(store)
     // console.log(store.getState())
 
 //     function handleInc(){
