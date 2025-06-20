@@ -11,8 +11,6 @@ const Todo = () => {
     const dispatch = useDispatch()
     const todoData = useSelector((store)=>store)
 
-    console.log(todoData)
-
 
     return (
         <>
