@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { todoActions } from '../../reduxToolkit/reducers/todoSlice';
+import { todoActions } from '../../reduxToolkit/todoReducer/todoSlice';
 
 const Todo = () => {
 

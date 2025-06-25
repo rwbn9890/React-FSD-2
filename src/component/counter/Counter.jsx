@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decCount, incCount } from '../../reduxToolkit/reducers/counterSlice';
+import { decCount, incCount } from '../../reduxToolkit/counterReducer/counterSlice';
 import Button from '../Button';
 
 const Counter = () => {
