@@ -1,5 +1,6 @@
 
 const baseUrl = "https://fakestoreapi.com"
+
 export const fetchMovies = async (endpoint) => {
     try {
         let res =  await fetch(baseUrl+endpoint)
