@@ -1,9 +1,7 @@
 import React, { useEffect } from "react"
-import Todo from "./component/todo/Todo"
-import Counter from "./component/counter/Counter"
-import { allCategories, allProducts } from "./redux/products/Action"
-import Product from "./component/product/product"
 import { useDispatch, useSelector } from "react-redux"
+import { getAllProduct } from "./redux_rtk/productReducer/productAction"
+import { fetchUsers } from "./redux_rtk/usersReducer/usersAction"
 
 
 
@@ -12,39 +10,32 @@ import { useDispatch, useSelector } from "react-redux"
 
 function App() {
 
-  const skip = useSelector((state)=> state.products.page.skip)
-  const filterCategories = useSelector((state)=> state.products.filterCategories)
-
+  const prod = useSelector((state) => state.prod)
+  const users = useSelector((state) => state.users)
   const dispatch = useDispatch()
-
-
-
-  useEffect(()=>{
-
-    let cat = filterCategories ? `/category/${filterCategories}` : ''
-   async function fetchApi(){
-      let res = await fetch(`https://dummyjson.com/products/${cat}?limit=8&skip=${skip}`)
-      let data = await res.json();
-       dispatch(allProducts(data))
-    }
-    fetchApi()
-  },[skip, filterCategories])
   
-  useEffect(()=>{
-    async function fetchCat(){
-       let res = await fetch(`https://dummyjson.com/products/categories`)
-       let data = await res.json();
-        dispatch(allCategories(data))
-     }
-     fetchCat()
 
-  },[])
+  useEffect(()=>{
+    dispatch(getAllProduct())
+  }, [])
+
+  console.log(users)
+
+if(users.loading)
+{
+  return (
+    <div className="p-10 text-lg text-red">
+      lading....
+    </div>
+  )
+}
 
   return (
     <>
-     <Counter/>
-     <Todo/>
-     <Product/>
+    <button onClick={() => dispatch(fetchUsers())} className=" p-2  shadow rounded-lg bg-black text-white">call users</button>
+
+    <button onClick={() => dispatch(fetchUsers(1))} className=" p-2  shadow rounded-lg bg-black text-white">single users</button>
+   
     </>
   )
 }
