@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllProduct } from "./redux_rtk/productReducer/productAction"
 import { fetchUsers } from "./redux_rtk/usersReducer/usersAction"
+import Dummy from "./components/Dummy"
 
 
 
@@ -36,6 +37,7 @@ if(users.loading)
 
     <button onClick={() => dispatch(fetchUsers(1))} className=" p-2  shadow rounded-lg bg-black text-white">single users</button>
    
+    <Dummy/>
     </>
   )
 }
