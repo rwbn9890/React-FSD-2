@@ -13,6 +13,8 @@ function App() {
 
   const prod = useSelector((state) => state.prod)
   const users = useSelector((state) => state.users)
+  const dummy = useSelector((state)=> state.dummyApi)
+  console.log(dummy)
   const dispatch = useDispatch()
   
 

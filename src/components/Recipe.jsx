@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { dummyApi } from '../redux_rtk/dummyReducer/dummyApi';
 import Card from './Card';
+import Pagination from './Pagination';
+import Search from './Search';
 
 const Recipe = () => {
- const {data, isLoading, error} = dummyApi.useAllRecipeQuery({endpoint:"recipe", limit:8})
+    const [page, setPage] = useState({p:1, s:0})
+ const {data, isLoading, error} = dummyApi.useAllRecipeQuery({endpoint:"recipe", limit:8, skip:page.s})
 
  console.log(data)
     if( isLoading){
@@ -12,13 +15,18 @@ const Recipe = () => {
                 return (<h1>something went wrong...</h1>)
             } else{
     return (
-        <>
+        <div className='flex flex-col justify-between h-full'>
+            <Search placeholder="recipes"/>
+            <div>
             {
                 data?.recipes.map((ele) => (
-                    <Card key={ele.id} img={ele.image} name={ele.name} />
+                    <Card key={ele.id} id={ele.id} img={ele.image} name={ele.name} />
                 ))
             }
-        </>
+            </div> 
+            <Pagination page={page} setPage={setPage}/>
+        </div>
+       
     );
 }
 }

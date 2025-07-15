@@ -6,7 +6,7 @@ export const dummyApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl:"https://dummyjson.com/"}),
     endpoints:(build) => ({
         allRecipe:build.query({
-            query: (end) => `${end.endpoint}?limit=${end.limit}` 
+            query: (end) => `${end.endpoint}?limit=${end.limit}&skip=${end.skip}` 
         })
     })
 }) 
