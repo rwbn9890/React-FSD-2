@@ -6,7 +6,7 @@ import Search from './Search';
 
 const Users = () => {
       const [page, setPage] = useState({p:1, s:0})
- const {data, isLoading, error} = dummyApi.useAllRecipeQuery({endpoint:"users", limit:8, skip:page.p})
+ const {data, isLoading, error} = dummyApi.useAllRecipeQuery({endpoint:"users", limit:8, skip:page.s})
  console.log(data)
             if( isLoading){
                 return (<h1>Loading...</h1>)
